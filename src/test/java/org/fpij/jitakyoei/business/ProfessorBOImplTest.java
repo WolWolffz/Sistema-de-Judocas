@@ -4,6 +4,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
+import java.nio.channels.Pipe.SourceChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,21 +28,28 @@ public class ProfessorBOImplTest {
         professorBO = new ProfessorBOImpl(mockView);
     }
 
+    
     @Test
     public void testCreateProfessor_Success() throws Exception {
-        Professor professor = new Professor();
+
         Filiado filiado = new Filiado();
+        filiado.setId(1L); 
+        filiado.setNome("João Silva");
+        filiado.setCpf("12345678900");
+        filiado.setEmail("joao.silva@email.com");
+    
+
+        Professor professor = new Professor();
         professor.setFiliado(filiado);
     
+
         when(mockDao.save(professor)).thenReturn(true);
-    
+
         professorBO.createProfessor(professor);
-    
-        // Verificar interações
+
         verify(mockDao).save(professor);
         verify(mockView).handleModelChange(professor);
-    }
-    
+    }        
 
 
     @Test
@@ -52,7 +60,9 @@ public class ProfessorBOImplTest {
             professorBO.createProfessor(professor);
             fail("Deveria lançar uma Exception");
         } catch (Exception e) {
-            assertTrue(e.getMessage().contains("Desculpe, ocorreu um erro desconhecido ao salvar o professor."));
+            System.out.println(e.getMessage());
+            assertTrue(e.getMessage().contains("Ocorreu um erro ao cadastrar o professor!"
+				+ " Verifique se todos os dados foram preenchidos corretamente."));
         }
     }
 
