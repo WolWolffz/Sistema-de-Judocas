@@ -30,10 +30,13 @@ jobs:
     - name: Check Java version
       run: java -version
 
-    - name: Set up Maven 3.9.9
+    - name: Install Maven 3.9.9
       run: |
-        sudo apt-get update
-        sudo apt-get install maven=3.9.9-1
+        wget https://downloads.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
+        tar -xvzf apache-maven-3.9.9-bin.tar.gz
+        sudo mv apache-maven-3.9.9 /opt/maven
+        echo "export PATH=/opt/maven/bin:$PATH" >> $GITHUB_ENV
+    
 
     - name: Check Maven version
       run: mvn -version
