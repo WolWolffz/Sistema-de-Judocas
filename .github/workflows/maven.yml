@@ -29,11 +29,11 @@ jobs:
         cache: maven
     - name: Check Java version
       run: java -version
-      
-    - name: Set up Maven 3.9.0
+
+    - name: Set up Maven 3.9.9
       run: |
         sudo apt-get update
-        sudo apt-get install maven=3.9.9
+        sudo apt-get install maven=3.9.9-1
 
     - name: Check Maven version
       run: mvn -version
