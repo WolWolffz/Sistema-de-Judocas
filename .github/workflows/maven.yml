@@ -1,0 +1,47 @@
+name: maven
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Java 18.0.1.1
+      run: |
+        wget https://download.oracle.com/java/18/archive/jdk-18.0.1.1_linux-x64_bin.tar.gz
+        tar -xvzf jdk-18.0.1.1_linux-x64_bin.tar.gz
+        sudo mv jdk-18.0.1.1 /opt/jdk
+        echo "JAVA_HOME=/opt/jdk" >> $GITHUB_ENV
+        echo "PATH=/opt/jdk/bin:$PATH" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Load Environment Variables
+      run: source $GITHUB_ENV
+
+    - name: Verify Java Version
+      run: java -version
+
+    - name: Install Maven 3.9.9
+      run: |
+        wget https://downloads.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
+        tar -xvzf apache-maven-3.9.9-bin.tar.gz
+        sudo mv apache-maven-3.9.9 /opt/maven
+        echo "PATH=/opt/maven/bin:$PATH" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Load Environment Variables
+      run: source $GITHUB_ENV
+
+    - name: Build with Maven
+      run: mvn package
+
+    - name: Maven Tests
+      run: mvn test
