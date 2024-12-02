@@ -175,7 +175,7 @@ public class AppFacadeImplTest {
     @Test
     public void testListProfessores(){
         //apagar todo os dados do banco de teste antes de realizar os testes
-        // DatabaseManager.deleteall();
+        DatabaseManager.deleteall();
 
         appFacade.createProfessor(new Professor());
         appFacade.createProfessor(new Professor());
@@ -219,7 +219,7 @@ public class AppFacadeImplTest {
     @Test
     public void testListEntidades(){
         //apagar todo os dados do banco de teste antes de realizar os testes
-        // DatabaseManager.deleteall();
+        DatabaseManager.deleteall();
 
         appFacade.createEntidade(new Entidade());
         appFacade.createEntidade(new Entidade());
