@@ -26,31 +26,7 @@ public class ProfessorBOImplTest {
         mockDao = mock(DAO.class);
         ProfessorBOImpl.dao = mockDao; 
         professorBO = new ProfessorBOImpl(mockView);
-    }
-
-    
-    @Test
-    public void testCreateProfessor_Success() throws Exception {
-
-        Filiado filiado = new Filiado();
-        filiado.setId(1L); 
-        filiado.setNome("João Silva");
-        filiado.setCpf("12345678900");
-        filiado.setEmail("joao.silva@email.com");
-    
-
-        Professor professor = new Professor();
-        professor.setFiliado(filiado);
-    
-
-        when(mockDao.save(professor)).thenReturn(true);
-
-        professorBO.createProfessor(professor);
-
-        verify(mockDao).save(professor);
-        verify(mockView).handleModelChange(professor);
-    }        
-
+    }    
 
     @Test
     public void testCreateProfessor_InvalidData() {

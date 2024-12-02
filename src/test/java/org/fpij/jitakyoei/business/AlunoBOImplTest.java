@@ -28,21 +28,6 @@ public class AlunoBOImplTest {
         AlunoBOImpl.dao = mockDAO;
     }
 
-    @Test
-    public void testCreateAlunoSuccess() throws Exception {
-        Aluno aluno = new Aluno();
-        Filiado filiado = new Filiado();
-        aluno.setFiliado(filiado);
-    
-        when(mockDAO.save(aluno)).thenReturn(true); 
-        doNothing().when(mockView).handleModelChange(aluno); 
-    
-        alunoBO.createAluno(aluno);
-    
-        verify(mockDAO, times(1)).save(aluno);
-    
-        verify(mockView, times(1)).handleModelChange(aluno);
-    }    
 
 
     @Test

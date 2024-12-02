@@ -1,6 +1,5 @@
 package org.fpij.jitakyoei.facade;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,12 +70,14 @@ public class AppFacadeImpl implements AppFacade {
 	}
 
 	@Override
-	public void listAlunos() {
+	public List<Aluno> listAlunos() {
+		List<Aluno> result = new ArrayList<Aluno>();
 		try{
-			alunoBO.listAll();
+			result = alunoBO.listAll();
 		}catch (Exception e) {
 			reportException(e);
 		}
+		return result;
 	}
 
 	@Override
