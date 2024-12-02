@@ -107,7 +107,7 @@ public class AppFacadeImplTest {
 
     @Test
     public void testListAluno(){
-        // DatabaseManager.deleteall();
+        DatabaseManager.deleteall();
 
         Aluno aluno = new Aluno();
         Filiado filiado = new Filiado();
