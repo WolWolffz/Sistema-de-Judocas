@@ -90,7 +90,14 @@ public class AppFacadeImplTest {
         DatabaseManager.deleteall();
 
         Aluno aluno = new Aluno();
+        Filiado filiado = new Filiado();
+        aluno.setFiliado(filiado);
+
         Aluno aluno2 = new Aluno();
+        Filiado filiado1 = new Filiado();
+        aluno2.setFiliado(filiado1);
+
+
 
         appFacade.createAluno(aluno);
 
@@ -100,11 +107,18 @@ public class AppFacadeImplTest {
 
     @Test
     public void testListAluno(){
-        //apagar todo os dados do banco de teste antes de realizar os testes
-        DatabaseManager.deleteall();
+        // DatabaseManager.deleteall();
 
-        appFacade.createAluno(new Aluno());
-        appFacade.createAluno(new Aluno());
+        Aluno aluno = new Aluno();
+        Filiado filiado = new Filiado();
+        aluno.setFiliado(filiado);
+
+        Aluno aluno1 = new Aluno();
+        Filiado filiado1 = new Filiado();
+        aluno1.setFiliado(filiado1);
+
+        appFacade.createAluno(aluno);
+        appFacade.createAluno(aluno1);
 
         assertEquals(2, appFacade.listAlunos().size());
     }
@@ -143,7 +157,7 @@ public class AppFacadeImplTest {
     @Test
     public void testSearchProfessor(){
         //apagar todo os dados do banco de teste antes de realizar os testes
-        DatabaseManager.deleteall();
+        // DatabaseManager.deleteall();
 
         Professor professor = new Professor();
         Professor professor2 = new Professor();
@@ -161,7 +175,7 @@ public class AppFacadeImplTest {
     @Test
     public void testListProfessores(){
         //apagar todo os dados do banco de teste antes de realizar os testes
-        DatabaseManager.deleteall();
+        // DatabaseManager.deleteall();
 
         appFacade.createProfessor(new Professor());
         appFacade.createProfessor(new Professor());
@@ -191,7 +205,7 @@ public class AppFacadeImplTest {
     @Test
     public void testSearchEntidade(){
         //apagar todo os dados do banco de teste antes de realizar os testes
-        DatabaseManager.deleteall();
+        // DatabaseManager.deleteall();
 
         Entidade entidade = new Entidade();
         Entidade entidade2 = new Entidade();
@@ -205,7 +219,7 @@ public class AppFacadeImplTest {
     @Test
     public void testListEntidades(){
         //apagar todo os dados do banco de teste antes de realizar os testes
-        DatabaseManager.deleteall();
+        // DatabaseManager.deleteall();
 
         appFacade.createEntidade(new Entidade());
         appFacade.createEntidade(new Entidade());
